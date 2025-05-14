@@ -27,6 +27,7 @@ def fetch_questions_from_sheet():
 
 @app.get("/questions")
 def get_questions():
+    return fetch_questions_from_sheet()
 
 @app.post("/submit")
 async def submit_answer(request: Request):
