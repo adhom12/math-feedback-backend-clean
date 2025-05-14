@@ -11,7 +11,7 @@ app = FastAPI()
 # ✅ CORS config (with missing comma added)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://dazzling-tanuki-a0eb74.netlify.app"],
+    allow_origins=["https://betamathfrontend.netlify.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
