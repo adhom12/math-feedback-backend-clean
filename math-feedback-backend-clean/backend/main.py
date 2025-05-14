@@ -13,14 +13,20 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+import csv
+import requests
+from io import StringIO
 
-# Load questions
-with open("data/questions.json") as f:
-    question_bank = json.load(f)
+CSV_URL = "https://docs.google.com/spreadsheets/d/your-sheet-id/pub?output=csv"
+
+def fetch_questions_from_sheet():
+    response = requests.get(CSV_URL)
+    f = StringIO(response.text)
+    reader = csv.DictReader(f)
+    return list(reader)
 
 @app.get("/questions")
 def get_questions():
-    return question_bank
 
 @app.post("/submit")
 async def submit_answer(request: Request):
